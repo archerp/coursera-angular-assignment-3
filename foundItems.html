@@ -1,5 +1,5 @@
 <ul>
-    <li ng-repeat="item in narrowItDown.found">
+    <li ng-repeat="item in narrowItDown.foundItems">
         {{ item.short_name }}, {{ item.name}}, {{ item.description}}
         <button ng-click="narrowItDown.onRemove({index: $index});">Don't want this one!</button>
     </li>
