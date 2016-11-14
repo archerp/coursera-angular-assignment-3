@@ -13,7 +13,8 @@ function FoundItemsDirective() {
         templateUrl: 'foundItems.html',
         scope: {
             found: '<',
-            onRemove: '&'
+            onRemove: '&',
+            notValid: '<'
         }
     }; 
     return ddo;

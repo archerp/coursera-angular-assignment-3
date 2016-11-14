@@ -23,22 +23,7 @@
 
       </div>
 
-    <found-items found="narrowItDown.found" on-remove="narrowItDown.remove(index);"></found-items>
-
-    <div ng-if="narrowItDown.notValid">Nothing found</div>
-
-    <!-- as directive is not working I have just put the template here to show controller and service are working -->
-    <!--<div class="container">
-      <div class="row">
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="item in narrowItDown.found">
-                 {{ item.short_name }} : {{ item.name}} : {{ item.description}} 
-                <button ng-click="narrowItDown.remove($index);">Don't want this one!</button>
-            </li>
-        </ul>
-      </div>      
-      <div ng-if="narrowItDown.notValid">Nothing found</div>
-    </div>-->
+    <found-items found="narrowItDown.found" on-remove="narrowItDown.remove(index);" not-valid="narrowItDown.notValid"></found-items>
 
   </div>
 
