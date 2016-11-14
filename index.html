@@ -18,26 +18,27 @@
           <input type="text" ng-model="narrowItDown.searchTerm" placeholder="search term" class="form-control">
         </div>
         <div class="form-group narrow-button">
-          <button ng-click="narrowItDown.search()" class="btn btn-primary">Narrow It Down For Me!</button>
+          <button ng-click="narrowItDown.search();" class="btn btn-primary">Narrow It Down For Me!</button>
         </div>
 
       </div>
 
-    <!-- found-items not working !!!!-->
-    <!--<found-items found-items="narrowItDown.found" on-remove="narrowItDown.removeItem(index)"></found-items>-->
+    <found-items found="narrowItDown.found" on-remove="narrowItDown.remove(index);"></found-items>
+
+    <div ng-if="narrowItDown.notValid">Nothing found</div>
 
     <!-- as directive is not working I have just put the template here to show controller and service are working -->
-    <div class="container">
+    <!--<div class="container">
       <div class="row">
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="item in narrowItDown.found">
                  {{ item.short_name }} : {{ item.name}} : {{ item.description}} 
-                <button ng-click="narrowItDown.removeItem($index);">Don't want this one!</button>
+                <button ng-click="narrowItDown.remove($index);">Don't want this one!</button>
             </li>
         </ul>
       </div>      
       <div ng-if="narrowItDown.notValid">Nothing found</div>
-    </div>
+    </div>-->
 
   </div>
 
