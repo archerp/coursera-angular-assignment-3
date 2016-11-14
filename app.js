@@ -13,8 +13,8 @@ function FoundItemsDirective() {
         tempalteUrl: 'foundItems.html',
         restrict: 'E',
         scope: {
-            foundItems: '<',
-            onRemove: '&'
+            foundItems: '<found',
+            onRemove: '&removeItem'
         }
     }; 
     return ddo;
