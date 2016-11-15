@@ -11,10 +11,11 @@
 function FoundItemsDirective() {
     var ddo = {
         templateUrl: 'foundItems.html',
+        Restrict: 'E',
         scope: {
-            found: '<',
-            onRemove: '&',
-            notValid: '<'
+            items: '<',     // attribute name for found-items directive, referenced as items in index.html and set to =narrowItDown.found, ref'd as items in foundItems.html  
+            onRemove: '&',  // attribute name for found-items directive, referenced as on-remove in index.html and set to =narrowItDown.removeItem(index), ref'd as onRemove({index: $index}) in foundItems.html  
+            isValid: '<'   // attribute name for found-items directive, referenced as is-valid in index.html and set to =narrowItDown.valid, ref'd as isValid in foundItems.html  
         }
     }; 
     return ddo;
@@ -25,14 +26,16 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController (MenuSearchService) {
     var menuSearch = this;
 
-    menuSearch.notValid = false;
+    menuSearch.valid = true;
     menuSearch.searchTerm = "";
+    menuSearch.found = [];
 
     menuSearch.search = function() {
 
         if (searchIsEmpty(menuSearch.searchTerm))
         {
-            menuSearch.notValid = true;
+            menuSearch.found = [];
+            menuSearch.valid = false;
             return;
         };
 
@@ -40,14 +43,14 @@ function NarrowItDownController (MenuSearchService) {
 
         searchForItems.then( function (result) {
             menuSearch.found = result;
-            menuSearch.notValid = (result.length === 0);
+            menuSearch.valid = (result.length > 0);
         })
         .catch(function(error) {
             console.log("MenuSearchService.getMatchedMenuItems returned an error");
         });
     };
 
-    menuSearch.remove = function (index) {
+    menuSearch.removeItem = function (index) {
         menuSearch.found.splice(index, 1);
     };
 
